@@ -11,7 +11,7 @@ class CreatePostsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up()//建立
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();//建立一個名為id的主鍵
