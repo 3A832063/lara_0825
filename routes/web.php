@@ -37,6 +37,7 @@ Route::get('/', function () {
     $posts = Post::where('id','>',10)->orderby('id','DESC')->get();//查詢符合條件的貼文，排序後取出
     dd($posts);
     */
+    /* 更新資料
     //使用update方法
     $post = Post::find(11);
     $post->update([
@@ -48,6 +49,14 @@ Route::get('/', function () {
     $post->title = 'saved title';
     $post->content = 'saved content';
     $post->save();
+    */
+    //使用delete方法
+    $post = Post::find(11);
+    $post->delete();
+    //使用destroy方法
+    Post::destroy(12);
+    //刪除多筆資料
+    Post::destroy(13,14,15);
     //return view('welcome');
 });
 
