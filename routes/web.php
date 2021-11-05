@@ -15,7 +15,25 @@ use App\Models\Post;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $post=new Post();//先產生Post的物件$post，$post代表資料表posts的一篇貼文
+    $post->title='test title';//指定貼文的title
+    $post->content='test content';//指定貼文的content
+    $post->save();
+    //使用create方法，P.S 應該會遇到 Mass Assignment 的警告
+    Post::create([
+        'title'=>'test title',
+        'content'=>'test content',
+    ]);
+    //使用all方法
+    $posts = Post::all();//取出posts資料表所有貼文
+    dd($posts);//dd=data dump，將變數內容倒出，並停止程式執行
+    //使用find方法
+    $post = Post::find(1);//找尋posts資料表id=1的貼文
+    dd($post);
+    //練習條件式
+    $posts = Post::where('id','<',10)->orderby('id','DESC')->get();//查詢符合條件的貼文，排序後取出
+    dd($posts);
+    //return view('welcome');
 });
 
 Route::get('posts',[PostsController::class,'index'])->name('posts.index');
@@ -26,12 +44,5 @@ Route::get('about',[PostsController::class,'about'])->name('posts.about');
 
 Route::get('contact',[PostsController::class,'contact'])->name('posts.contact');
 
-$post=new Post();//先產生Post的物件$post，$post代表資料表posts的一篇貼文
-$post->title='test title';//指定貼文的title
-$post->content='test content';//指定貼文的content
-$post->save();
-//使用create方法，P.S 應該會遇到 Mass Assignment 的警告
-Post::create([
-    'title'=>'test title',
-    'content'=>'test content',
-]);
+
+
