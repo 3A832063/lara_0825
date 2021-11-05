@@ -51,13 +51,27 @@ Route::get('/', function () {
     $post->save();
     */
     //使用delete方法
+    /* 刪除資料
     $post = Post::find(11);
     $post->delete();
     //使用destroy方法
     Post::destroy(12);
     //刪除多筆資料
     Post::destroy(13,14,15);
+    */
+    /*了解 Model 和 Collection 的差異
+    //取得Collection，多筆貼文的集合
+    $allPosts = Post::all();
+    dd($allPosts);
+    $featuredPosts = Post::where('is_feature',1)->get();
+    dd($featuredPosts);
+    //取得Model，單一筆貼文
+    $fourthPost = Post::find(17);
+    dd($fourthPost);
+    $lastPost = Post::orderby('id','DESC')->first();
+    dd($lastPost);
     //return view('welcome');
+    */
 });
 
 Route::get('posts',[PostsController::class,'index'])->name('posts.index');
