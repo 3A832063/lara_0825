@@ -59,7 +59,7 @@ Route::get('/', function () {
     //刪除多筆資料
     Post::destroy(13,14,15);
     */
-    /*了解 Model 和 Collection 的差異
+    /*了解 Model 和 Collection 的差異*/
     //取得Collection，多筆貼文的集合
     $allPosts = Post::all();
     dd($allPosts);
@@ -71,7 +71,7 @@ Route::get('/', function () {
     $lastPost = Post::orderby('id','DESC')->first();
     dd($lastPost);
     //return view('welcome');
-    */
+
 });
 
 Route::get('posts',[PostsController::class,'index'])->name('posts.index');
